@@ -50,11 +50,11 @@ from tensorflow.contrib.keras.python.keras import utils
 print("You have TensorFlow version", tf.__version__)
 
 
-train_size = int(len(body_file) * .5)
+train_size = int(len(body_file) * .7)
 print ("Train size: %d" % train_size)
 print ("Test size: %d" % (len(body_file) - train_size))
 
-
+np.random.seed()
 train_posts = body_file['post'][:train_size]
 train_tags = label_file['label'][:train_size]
 
@@ -131,6 +131,7 @@ class myCustomClassifier():
         tempFull = [i[1] for i in sorted(tempDist)[:self.n_number]]
         
         voteResult = Counter(tempFull).most_common(1)[0][0]
+       
         # Takes votes of k - number and returns label which has most votes          
         return voteResult
     
@@ -145,7 +146,7 @@ class myCustomClassifier():
         return predictions
     
 #Implementing custom classifier
-knn = myCustomClassifier(1)
+knn = myCustomClassifier(3)
 knn.fit(x_train, y_train) 
 
 

@@ -121,10 +121,76 @@ Classifier:-
 
 
 
+----------------------------------------------------------------------------
+Part 1 b)
 
-### Stuff used to make this:
+1. In a Nearest Neighbor classifier, is it important that all features be on the same scale?
+Think: what would happen if one feature ranges between 0-1, and another ranges
+between 0-1000? If it is important that they are on the same scale, how could you
+achieve this?
+Ans:- All Features can be of different scale  but we should normalize the data for just point of view reference.
+you should normalize data when your model is sensitive to magnitude, and the units of two different features are different, and arbitrary. This is like the case you suggest, in which something gets more influence than it should.
+If One feature is in scale 1-10 and another in 0-1000, the second one will influence more on the result. Normalizing or scaling the data will be helpful.
 
- * [markdown-it](https://github.com/markdown-it/markdown-it) for Markdown parsing
- * [CodeMirror](http://codemirror.net/) for the awesome syntax-highlighted editor
- * [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for syntax highlighting in output code blocks
- * [js-deflate](https://github.com/dankogai/js-deflate) for gzipping of data to make it fit in URLs
+2. What is the difference between a numeric and categorical feature? How might you
+represent a categorical feature so your Nearest Neighbor classifier could work with it?
+Ans:- 
+Categorical:-
+Values or observations that can be sorted into groups or categories.
+Examples: Sex, Eye colour and Favourite colour.
+Bar charts and pie graphs are used to graph categorical data.
+
+Numerical
+Values or observations that can be measured. And these numbers can be placed in ascending or descending order. Examples: Height, Arm Span and Weight.
+Scatter plots and line graphs are used to graph numerical data.
+
+In our case in part1.py , we could use color of the flower to categorize data by assigining bits to the color.
+
+3. What is the importance of testing data?
+Ans:-  In order to estimate how well your model has been trained (that is dependent upon the size of your data, the value you would like to predict, input etc) and to estimate model properties (mean error for numeric predictors, classification errors for classifiers, recall and precision for IR-models etc.)
+
+4. What does “supervised” refer to in “supervised classification”?
+Ans:- In supervised classification the user or image analyst “supervises” the pixel classification process. The user specifies the various pixels values or spectral signatures that should be associated with each class. This is done by selecting representative sample sites of known cover type called Training Sites or Areas. The computer algorithm then uses the spectral signatures from these training areas to classify the whole image.
+
+5. If you were to include additional features for the Iris dataset, what would they be, and
+why?
+Ans:- If we can thin of additional dataset for iris, I can use color and image as a parameter. Using sequential modelling and softmax regression we can more accurately predict the flower type.
+
+
+Part 2 b)
+1. What are the strengths and weaknesses of using a Bag of Words? (Tip: would this
+representation let you distinguish between two sentences the same words, but in a
+different order?)
+Ans:- Weakness -  Bag of words models encode every word in the vocabulary as one-hot-encoded vector i.e. for vocabulary of size |V||V|, each word is represented by a |V||V| dimensional sparse vector with 11 at index corresponding to the word and 00 at every other index. As vocabulary may potentially run into millions, bag of word models face scalability challenges.
+While modeling phrases using bag-of-words the order of words in the phrase is not respected. 
+
+Strengths:- In this model, a text such as a sentence or a document is represented as the bag i.e multiset of its words, disregarding grammar and even word order but keeping multiplicity.  
+
+Bag of words does not understand grammer or the order of words in a sentence and hence we cannot distinguish 2 words in same sentences but in different order.
+
+2. Which of your features do you think is most predictive, least predictive, and why?
+Ans:-  Term frequency, namely, the number of times a term appears in the text is the most predictive feature. This list or vector representation does not preserve the order of the words in the original sentences, which is just the main feature of the Bag-of-words model.
+Least predictive features are vowels like a,e,i,o,u as they are present in every sentence and also words like a ,the ,or, and etc.These can be reduced by normalizing the data.
+
+Did your classifier misclassify any examples? Why or why not?
+Ans:- Yes as the accuracy score is not 1.0, it did misclassify the data. 
+As you can see, this is nearest neighbor votes for k = 3 with 1 as spam and 0 as non spam:-
+[1, 1, 1]
+[1, 1, 0]
+[0, 0, 1]
+[0, 0, 1]
+[1, 1, 1]
+[0, 1, 0]
+[1, 1, 1]
+[1, 0, 0]
+[1, 0, 1]
+[1, 0, 1]
+[1, 1, 1]
+[0, 0, 1]
+[1, 1, 1]
+[1, 1, 1]
+[1, 1, 1]
+
+If nearest neighbor gives out 1 i.e spam and other to neighbors tell it as non spam , it will display as non spam which might be wrong in many cases.
+
+
