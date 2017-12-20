@@ -1,1 +1,99 @@
 
+# Final Project
+
+Youtube Link :- https://youtu.be/PonkxJNxCZI
+
+My Final Project is divided into 2 parts:- 
+ 1) Chatbot implimented with angular 2 UI.
+ 2) Yelp multilabel image classificationimplimented with angular 2 UI.
+
+ 1) Chatbot implimented with angular 2 UI:-
+    a) Chatbot built using 4 LSTM layers.
+    b) Conversation.json file with 67 lines of chat conversation.
+    c) Interactive UI built using Angular 2 and integrated with python trained model.
+    d) User Inputs chat message which is then passed to trained model at backend. The model Responds with appropriate answer.
+
+ 2) Yelp Multilabel image classification with angular 2 UI :-
+    a) User specifies image path and our trained model predicts the output classes.
+    b) Their are 9 output classes and the image data was retrieved using yelp image classification from below link
+        https://www.kaggle.com/c/yelp-restaurant-photo-classification/data
+    c) Angular 2 UI is implemented which takes image name as input and gives out predicted multiple output classes names.        
+
+# angular2-flask integrated with python 
+
+
+1) backend/server.py contains python models and backend login
+2) front/app/src/components/home.component.ts contains front end UI logic.
+
+---
+
+
+
+Simple angular2 app with python-flask backend (for learning angular2)
+
+## Dockerized version:
+---
+
+The current build is using `nginx` to serve static files.
+
+1. In project root directory execute `docker-compose up`
+
+2. Navigate to `http://localhost:3000` and login using `admin:admin`
+
+
+## Info
+---
+
+1.  `backend` directory contains the flask backend with simple authentication methods
+
+2.  `front` directory contains the angular2 frontend based on [angular-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter)
+
+## Usage
+---
+
+1.  Clone the repo
+
+    ```bash
+    git clone --depth 1 git@github.com:aPorousRock/cs632.git
+    cd angular2-flask
+    ```
+
+2.  Install the backend related requirements and run. The following will start a flask-server on `localhost:8080`
+
+    ```bash
+    cd backend
+    sudo pip install -r requirements.txt
+    python run.py
+    ```
+
+3.  Install frontend related dependencies
+
+    -   Easiest way to handle node related dependencies is to install [nvm](https://github.com/creationix/nvm)
+    -   Once you have node installed, install the project's dependencies
+
+    ```bash
+    cd front
+
+    # install global dependencies
+    npm install webpack-dev-server rimraf webpack typescript -g
+
+    # install project related dependencies
+    npm install
+
+    # run server
+    npm run server:dev:hmr
+    ```
+
+4.  Now navigate to `http://localhost:3000` and login using default credential : `admin:admin`
+
+5.  Extra Note: To create a production build
+
+    ```bash
+    cd front
+    npm install webpack-dev-server rimraf webpack typescript -g
+    npm install
+    npm run build:prod
+
+    # Serves on http://localhost:5000
+    npm run server:prod
+    ```
